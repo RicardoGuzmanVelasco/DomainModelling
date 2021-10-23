@@ -47,7 +47,11 @@ Hopscotch
 object Game6{
 Squid Game
 }
-
+Game2 .l. Game1 #transparent
+Game3 .l. Game2 #transparent
+Game4 .l. Game3 #transparent
+Game5 .l. Game4 #transparent
+Game6 .l. Game5 #transparent
 
 ''''''''''''''''
 
@@ -74,10 +78,10 @@ Game5 --u-|> Games
 Game6 --u-|> Games
 
 Game1 *-- Participants : 456
-Game2 *-- Participants : ""
-Game3 *-- Participants : ""
-Game4 *-- Participants : ""
-Game5 *-- Participants : ""
-Game6 *-- Participants : "2   "
+Game2 *-- Participants : 201
+Game3 *-- Participants : 80
+Game4 *-- Participants : 32
+Game5 *-- Participants : 16
+Game6 *-- Participants : 2
 
 @enduml
