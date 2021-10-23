@@ -1,0 +1,83 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+title Basics, 2020 Edition
+header Squid Game
+
+object Contest
+object 2020
+
+object Games
+object Players
+
+object Winner{
+number = 456
+name = Seong Gi-hun
+}
+
+object EliminatedPlayers{
+numbers = [1,455]
+}
+
+object Prize{
+quantity = 46B ₩
+}
+
+object AddingPrize{
+quantity = 100M ₩ each
+}
+
+object Participants
+
+object Game1{
+Red Light, Green Light
+}
+object Game2{
+Sugar Honeycombs
+}
+object Game3{
+Tug of War
+}
+object Game4{
+Marbles
+}
+object Game5{
+Hopscotch
+}
+object Game6{
+Squid Game
+}
+
+
+''''''''''''''''
+
+
+Contest *- 2020
+Contest *-- "456" Players
+Contest *-- "6" Games
+
+Winner -u-|> Players
+EliminatedPlayers -u-|> Players
+
+EliminatedPlayers -- AddingPrize
+AddingPrize --> "+" Prize
+
+Winner .. "doesn't use :)" Prize
+
+Players .. Participants
+
+Game1 --u-|> Games
+Game2 --u-|> Games
+Game3 --u-|> Games
+Game4 --u-|> Games
+Game5 --u-|> Games
+Game6 --u-|> Games
+
+Game1 *-- Participants : 456
+Game2 *-- Participants : ""
+Game3 *-- Participants : ""
+Game4 *-- Participants : ""
+Game5 *-- Participants : ""
+Game6 *-- Participants : "2   "
+
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Basics
+header Squid Game
+
+rectangle Contest
+rectangle Year
+
+rectangle Game
+
+collections Player
+rectangle Winner
+collections EliminatedPlayer
+
+rectangle Prize
+rectangle AddingPrize
+
+collections Participant
+
+''''''''''''''''''''''''''''
+
+Contest *- "1" Year
+Contest *-- "*" Player
+
+Contest *-- "6" Game
+
+EliminatedPlayer -u-|> Player
+Winner -u-|> Player
+
+Participant .. Player : role
+
+Game *- "2..*" Participant
+Participant --> "losers" EliminatedPlayer
+
+
+Contest *-- Prize
+Winner *-- "wins" Prize
+
+EliminatedPlayer -- AddingPrize
+AddingPrize -> Prize : adds to
+
+@enduml
