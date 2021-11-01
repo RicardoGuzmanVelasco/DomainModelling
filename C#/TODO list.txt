@@ -1,0 +1,5 @@
+[ ] foreach
+[ ] for
+[ ] object initializer
+[ ] iterator
+[ ] Immutables (different to ReadOnly)

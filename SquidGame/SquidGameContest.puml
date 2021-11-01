@@ -1,6 +1,5 @@
 @startuml
 'https://plantuml.com/class-diagram
-
 title Basics
 header Squid Game
 
@@ -40,4 +39,6 @@ Winner *-- "wins" Prize
 EliminatedPlayer -- AddingPrize
 AddingPrize -> Prize : adds to
 
+'''''''''''''
+footer © RGV, 2021
 @enduml

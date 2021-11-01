@@ -1,0 +1,79 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Extensive usage
+header C# | Collections | Generic
+'''''''''''''
+
+note as Note
+TBC.
+end note
+
+'remove ReadOnlyCollection
+class ReadOnlyCollection<T>
+{
+    +Count: int {get;}
+    +Item[int] {indexer}
+    +Items: IList<T>
+}
+
+class List<T>
+{
+    +Capacity: int {get;}
+    
+    +AddRange(IEnumerable<T>): void
+    +AsReadOnly(): ReadOnlyCollection<T>
+    {method}...
+    +IndexOf(T): int
+    {method}...
+}
+
+interface IList<T>
+{
+    +Item[int] {indexer}
+}
+
+interface IReadOnlyList<T>
+{
+    +Item[int] {indexer}
+}
+
+interface IReadOnlyCollection<T>
+{
+    +Count: int {get;}
+}
+
+interface ICollection<T>
+{
+    +Count: int {get;}
+    +IsReadOnly: bool {get;}
+    
+    +Add(T): void 
+    +Clear(): void 
+    +Contains(T): bool 
+    +CopyTo(T[], int): void
+    +Remove(T): void 
+}
+
+interface IEnumerable<T>
+{
+    +GetEnumerator()
+}
+
+'''''''''''''
+
+ReadOnlyCollection ..|> IList
+ReadOnlyCollection ..|> IReadOnlyList
+
+List..|>IList
+List..|>IReadOnlyList
+
+IReadOnlyList--|>IReadOnlyCollection
+
+IList --|> ICollection
+ICollection --|> IEnumerable
+
+IReadOnlyCollection --|> IEnumerable
+
+'''''''''''''
+footer © RGV, 2021
+@enduml
