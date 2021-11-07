@@ -16,7 +16,7 @@ Some navigation maps shown throughout the book (Eric Evans, 2003).
 <details><summary>Strategic distillation</summary>
 <p>
 
-![](DDD/Strategic distillation.png)
+![](DDD/StrategicDistillation.png)
 
 </p>
 </details>
