@@ -11,16 +11,25 @@ Some navigation maps shown throughout the book (Eric Evans, 2003).
 _Click diagram titles to expand_.
 
 <details><summary>Model integrity patterns</summary>
+<p>
 
 ![](DDD/Model integrity patterns.png)
+
+</p>
 </details>
 
 <details><summary>Strategic distillation</summary>
+<p>
 
 ![](DDD/Strategic distillation.png)
+
+</p>
 </details>
 
 <details><summary>Large-scale structure patterns</summary>
+<p>
 
 ![](DDD/Large-scale structure patterns.png)
+
+</p>
 </details>
