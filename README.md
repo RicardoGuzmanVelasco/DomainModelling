@@ -13,7 +13,7 @@ _Click diagram titles to expand_.
 <details><summary>Model integrity patterns</summary>
 <p>
 
-![](DDD/Model integrity patterns.png)
+![Model integrity patterns](DDD/Model integrity patterns.png)
 
 </p>
 </details>
