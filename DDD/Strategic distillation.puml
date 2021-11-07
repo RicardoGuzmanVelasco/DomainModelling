@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+header DDD (Domain-Driven Design)
+title Strategic distillation
+allowmixing
+'''''''''''''
+
+usecase "Core\nDomain" as CD #khaki
+
+    usecase "Domain Vision \n Statement" as DVS
+    
+    usecase "Highlighted \n Core" as HLC
+    
+    usecase "Segregated \n Core" as SC
+        
+        usecase "Abstract \n Core" as AC
+            
+    usecase "Generic \n Subdomains" as GS
+    
+        usecase "Declarative \n Style" as DS
+    
+    usecase "Cohesive \n Mechanisms" as CM
+    
+        usecase "Intention-Revealing \n Interfaces" as IRI
+    
+'''''''''''''
+
+CD -r-> DVS : point the way with
+CD -u-> HLC : designate content with
+CD --> SC : repackage into
+    SC --> AC : distill into
+    SC --> DS: distill to
+CD --> GS : unencumber from
+    GS --> DS : distill to
+CD -l-> CM : unencumber from
+    CM --> IRI : expose capability \n trough
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

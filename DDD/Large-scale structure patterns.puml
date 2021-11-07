@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+header DDD (Domain-Driven Design)
+title Large-scale structure patterns
+allowmixing
+'''''''''''''
+
+usecase "Model-Driven \n Design" as MDD #khaki
+
+    usecase "System \n Metaphor" as SM
+    usecase "Responsibility \n Layers" as RL
+    
+        usecase "Ubiquitous \n Language" as UL
+        
+    usecase "Knowledge \n Level" as KL
+    
+    usecase "Pluggable \n Component \n Framework" as PCF
+
+    usecase "Evolving \n Order" as EO
+    
+'''''''''''''
+
+MDD --> SM : guide thinking by
+    SM --> UL : enters
+MDD --> RL : stratify into
+    RL --> UL : names enter 
+MDD -l-> KL : "separate plastic \n behaviour into"
+MDD -r-> PCF : "decouple \n contributions"
+MDD --u> EO : "discover/distill \n structure through"
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

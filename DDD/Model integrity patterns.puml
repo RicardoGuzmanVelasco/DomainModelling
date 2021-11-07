@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/class-diagram
+header DDD (Domain-Driven Design)
+title Model integrity patterns
+allowmixing
+'''''''''''''
+
+usecase "Bounded\nContext" as BC #khaki
+
+    usecase "Ubiquitous\nLanguage" as UL
+    
+    usecase "Continuous Integration" as CI #technology
+    
+    usecase "Context Map" as CM #khaki
+    
+        usecase "Anticorruption Layer" as AL
+        
+        usecase "Separate\nWays" as SW
+        
+        usecase "Open Host\nService" as OHS
+        
+            usecase "Published\nLanguage" as PL
+        
+        usecase Conformist
+        
+        usecase "Customer/Supplier Teams" as CST
+        
+        usecase "Shared\nKernel" as SK
+    
+'''''''''''''
+
+BC -l-> UL : names\nenter
+BC -r-> CI : keep model\nunified by
+BC --> CM : assess/overview\nrelationships with
+    CM -l-> AL : translate and insulate\nunilaterally with
+    CM --> SW : free teams to go
+    CM ---> OHS : support multiple\nclients through
+        OHS -l-> PL : formalize as
+    CM ---> Conformist : overlap unilaterally as
+    CM --> CST : relate allied contexts as
+    CM -r-> SK : overlap allied contexts through
+
+'''''''''''''
+footer © RGV, 2021
+@enduml
