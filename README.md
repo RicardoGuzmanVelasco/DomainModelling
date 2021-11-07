@@ -7,9 +7,8 @@ Some navigation maps shown throughout the book (Eric Evans, 2003).
  
 >😅 I used UML Use cases notation as its the closest to original navigation maps diagram notation.
 
-_Click diagram titles to expand_.
-
 ---
+_Click diagram titles to expand_.
 
 <details><summary>Model integrity patterns</summary>
 
