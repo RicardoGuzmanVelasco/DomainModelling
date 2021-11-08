@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 title Extensive usage
-header C# | Collections | Generic
+center header C# | Collections | Generic
 '''''''''''''
 
 note as Note
@@ -75,5 +75,5 @@ ICollection --|> IEnumerable
 IReadOnlyCollection --|> IEnumerable
 
 '''''''''''''
-footer © RGV, 2021
+right footer © RGV, 2021
 @enduml

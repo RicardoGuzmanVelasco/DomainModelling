@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 title Basics
-header Squid Game
+center header Squid Game
 
 rectangle Contest
 rectangle Year
@@ -40,5 +40,5 @@ EliminatedPlayer -- AddingPrize
 AddingPrize -> Prize : adds to
 
 '''''''''''''
-footer © RGV, 2021
+right footer © RGV, 2021
 @enduml

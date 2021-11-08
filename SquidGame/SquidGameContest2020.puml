@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/object-diagram
 title Basics, 2020 Edition
-header Squid Game
+center header Squid Game
 '''''''''''''
 
 object Contest
@@ -85,5 +85,5 @@ Game5 *-- Participants : 16
 Game6 *-- Participants : 2
 
 '''''''''''''
-footer © RGV, 2021
+right footer © RGV, 2021
 @enduml

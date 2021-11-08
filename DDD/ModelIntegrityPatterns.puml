@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/class-diagram
-header DDD (Domain-Driven Design)
+center header DDD (Domain-Driven Design)
 title Model integrity patterns
 allowmixing
 '''''''''''''
@@ -41,5 +41,5 @@ BC --> CM : assess/overview\nrelationships with
     CM -r-> SK : overlap allied contexts through
 
 '''''''''''''
-footer © RGV, 2021
+right footer © RGV, 2021
 @enduml

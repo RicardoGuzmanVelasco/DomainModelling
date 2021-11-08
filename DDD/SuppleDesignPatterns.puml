@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+center header DDD (Domain-Driven Design)
+title Supple-design Patterns
+allowmixing
+'''''''''''''
+
+usecase "Model-Driven\nDesign" as MDD #khaki
+
+    usecase "Intention-\nRevealing\nInterfaces" as IRI #khaki
+        
+        usecase "Ubiquitous\nLanguage" as UL
+        
+        usecase "Side-Effect-Free\nFunctions" as SEFF
+        
+        usecase Assertions
+        
+        usecase "Closure of\nOperations" as CoO
+        
+    usecase "Standalone\nClasses" as SC
+    
+    usecase "Conceptual\nContours" as CC
+    
+'''''''''''''
+
+MDD -u-> IRI : express model through
+    IRI -l-> UL : draw from
+    IRI -u-> SEFF : make safe and simple
+    IRI -r-> Assertions : make side effects explicit
+        Assertions -u-> SEFF : make composition safe
+    IRI -r-> CoO : simplify interpretation
+MDD -r-> SC : simplify interpretation
+    SC -r-> CoO : may use
+MDD --> CC : reduce cost of change
+
+'''''''''''''
+right footer © RGV, 2021
+@enduml
