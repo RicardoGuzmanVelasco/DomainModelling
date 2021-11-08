@@ -11,6 +11,11 @@ Some navigation maps shown throughout the book (Eric Evans, 2003).
 
 _Click titles to expand diagrams_.
 
+<details><summary>Supple design patterns</summary>
+
+![](DDD/SuppleDesignPatterns.png)
+</details>
+
 <details><summary>Model integrity patterns</summary>
 
 ![](DDD/ModelIntegrityPatterns.png)
