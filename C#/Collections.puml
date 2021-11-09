@@ -75,5 +75,5 @@ ICollection --|> IEnumerable
 IReadOnlyCollection --|> IEnumerable
 
 '''''''''''''
-right footer © RGV, 2021
+right footer (CC-BY) RGV, 2021
 @enduml

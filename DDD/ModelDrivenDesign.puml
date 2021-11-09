@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/class-diagram
+center header DDD (Domain-Driven Design)
+title Model-Driven Design
+allowmixing
+'''''''''''''
+
+usecase "Model-Driven\nDesign" as MDD #khaki
+
+    usecase Services
+        
+    usecase Entities
+        
+        usecase Aggregates #application
+        
+                usecase Repositories #technology
+        
+    usecase "Value Objects" as ValueObjects
+        
+        usecase Factories
+    
+    usecase "Layered\nArchitecture" as LA #application
+    
+usecase "Smart UI" as SUI #implementation
+
+'''''''''''''
+
+MDD -u-> Services : express model with
+MDD --> Entities : express model with
+    Entities -l-> Repositories : access with
+    Entities -r-> Factories : encapsulate with
+    Entities --> Aggregates : maintain integrity with
+    Entities --> Aggregates : act as root of
+MDD --> ValueObjects : express model with
+    ValueObjects -l-> Factories : encapsulate with
+    ValueObjects --> Aggregates : encapsulate with
+        Aggregates --> Factories : encapsulate with
+MDD -l-> LA : isolate domain with
+MDD -r- SUI : ❌ mutually exclusive choices
+
+'''''''''''''
+right footer (CC-BY) RGV, 2021
+@enduml
