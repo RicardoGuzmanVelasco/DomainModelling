@@ -11,6 +11,11 @@ Some navigation maps shown throughout the book (Eric Evans, 2003).
 
 _Click titles to expand diagrams_.
 
+<details><summary>Model-Driven Design</summary>
+
+![](DDD/ModelDrivenDesign.png)
+</details>
+
 <details><summary>Supple design patterns</summary>
 
 ![](DDD/SuppleDesignPatterns.png)
