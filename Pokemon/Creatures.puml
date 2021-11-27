@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Creatures specification
+center header Pokémon
+'''''''''''''
+
+class Specie #khaki
+
+class Type
+
+class Evolution
+
+class Stats
+
+class CatchRate <<(N, orchid) ℝ[0,1]>>
+
+class ExperienceGroup
+
+class GenderRatio
+
+class Learnset
+
+'''''''''''''
+
+Specie -- "1..2" Type
+Specie -- "0..*" Evolution
+Specie -- Stats
+Specie -- CatchRate
+Specie -- ExperienceGroup
+Specie -- GenderRatio
+Specie -- Learnset
+
+'''''''''''''
+right footer (CC-BY) RGV, 2021
+@enduml
