@@ -1,34 +1,74 @@
 @startuml
 'https://plantuml.com/class-diagram
 title Creatures specification
-center header Pokémon
+center header Pokémon | Domain Model
 '''''''''''''
 
 class Specie #khaki
 
 class Type
 
-class Evolution
-
-class Stats
+class Evolution <<(S, orange)>>
+    class EvolutionRequirement <<(S, orange)>>
+        class Meets <<(?, orchid)>>
+    
+class SpecieStats <<(S, orange)>>
+    class Stats <<(S, orange)>>
+    class Yield <<(S, orange>>
+        class ExperienceYield <<(N, orchid) ℕ>>
 
 class CatchRate <<(N, orchid) ℝ[0,1]>>
 
 class ExperienceGroup
 
-class GenderRatio
+class GenderRatio <<(S, orange)>>
+    class IsGenderless <<(?, orchid)>>
+    class PercentageToBeMale <<(N, orchid) ℕ[0,100]>>
 
-class Learnset
+class Learnset <<(S, orange)>>
+    class Move
+    class ByMachines <<(S, orange)>>
+    class OnLevelUp <<(S, orange)>>
+        class Level <<(N, orchid) ℕ>>
+    class WhenEvolved <<(S, orange)>>
 
 '''''''''''''
 
 Specie -- "1..2" Type
 Specie -- "0..*" Evolution
-Specie -- Stats
+    Evolution -- "1..*" EvolutionRequirement
+        EvolutionRequirement -- Meets
+    Evolution "target" o---> Specie
+Specie -- SpecieStats
 Specie -- CatchRate
 Specie -- ExperienceGroup
 Specie -- GenderRatio
 Specie -- Learnset
+
+
+SpecieStats -- Stats : base
+SpecieStats -- Yield 
+    Yield -- ExperienceYield
+    Yield -- Stats : effort
+
+GenderRatio -- IsGenderless
+GenderRatio -- PercentageToBeMale
+
+Learnset -- ByMachines
+    ByMachines -- "*" Move
+Learnset -- OnLevelUp
+    (OnLevelUp,  Move) -- Level 
+Learnset -- WhenEvolved
+    WhenEvolved -- "*" Move
+
+'''''''''''''
+legend
+| <#darkseagreen> C | Entities (have ID) |
+|       <#orange> S | ValueObjects       |
+|       <#orchid> N | Numbers            |
+|       <#orchid> ? | Dichotomies        |
+|        <#khaki>   | Aggregate root     |
+endlegend
 
 '''''''''''''
 right footer (CC-BY) RGV, 2021
