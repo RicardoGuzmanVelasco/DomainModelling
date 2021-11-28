@@ -4,9 +4,7 @@ center header Pokémon | Domain Model
 '''''''''''''
 '''''''''''''
 
-object Genderless{ 
-    IsGenderLess = true
-    --
+object Genderless{
     PercentageToBeMale = 0%
     PercentageToBeFemale = 0%
     --
@@ -14,8 +12,6 @@ object Genderless{
 }
 
 object MaleOnly{
-    IsGenderLess = false
-    --
     PercentageToBeMale = 100%
     PercentageToBeFemale = 0%
     --
@@ -23,8 +19,6 @@ object MaleOnly{
 }
 
 object MostlyMale{
-    IsGenderLess = false
-    --
     PercentageToBeMale = 87.5%
     PercentageToBeFemale = 12.5%
     --
@@ -32,8 +26,6 @@ object MostlyMale{
 }
 
 object UsuallyMale{
-    IsGenderLess = false
-    --
     PercentageToBeMale = 75%
     PercentageToBeFemale = 25%
     --
@@ -41,8 +33,6 @@ object UsuallyMale{
 }
 
 object Balanced{
-    IsGenderLess = false
-    --
     PercentageToBeMale = 50%
     PercentageToBeFemale = 50%
     --
@@ -50,8 +40,6 @@ object Balanced{
 }
 
 object UsuallyFemale{
-    IsGenderLess = false
-    --
     PercentageToBeMale = 25%
     PercentageToBeFemale = 75%
     --
@@ -68,8 +56,6 @@ object MostlyFemale{
 }
 
 object FemaleOnly{
-    IsGenderLess = false
-    --
     PercentageToBeMale = 0%
     PercentageToBeFemale = 100%
     --

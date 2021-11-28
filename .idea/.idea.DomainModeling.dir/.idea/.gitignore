@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.DomainModeling.iml
+*/.idea*
 /projectSettingsUpdater.xml
 /modules.xml
 /contentModel.xml
