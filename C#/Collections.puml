@@ -1,10 +1,14 @@
 @startuml
 'https://plantuml.com/class-diagram
-title Complete usage [WIP]
+title Basic with array
 center header C# | Collections | Generic
 '''''''''''''
+'TODO: DICTIONARIES ALL HIERARCHY
+'TODO: SETS ALL HIERARCHY
+'TODO: NON GENERICS!
 
-class NativeArray{
+class NativeArray
+{
 +<T>[]() {constructor}
 }
 
@@ -31,7 +35,29 @@ abstract class Array
     {method}...  
 }
 
-class  Enumerable<T> <<Static>>
+class Stack<T>
+{
+    +Peek(): T
+    +Pop(): T
+    +Push(item: T): void
+}
+
+class Queue<T>
+{
+    +Enqueue(item: T)
+    +Dequeue(): T
+    +Peek(): T
+}
+
+class HashSet<T>
+{
+    +UnionWith(other IEnumerable<T>)
+    +IntersectWith(other IEnumerable<T>)
+    +ExceptWith(other IEnumerable<T>)
+    {method}...
+}
+
+class  Enumerable<T> <<Static>> 
 {
     +{static}Empty<T>(): IEnumerable<T>
     +{static}Range<T>(): IEnumerable<T>
@@ -78,13 +104,15 @@ ReadOnlyCollection ..|> IReadOnlyList
 List..|>IList
 List..|>IReadOnlyList
 
+remove NativeN
 note as NativeN
 This stands for
 common C# arrays:
-Example: int[] intArray;
+Example: int[] intArray;*
 end note
 NativeN .. NativeArray
 
+remove ArrayN
 note as ArrayN
 This stands for
 Array class, a class
@@ -93,9 +121,11 @@ array-related operations.
 end note
 ArrayN .. Array
 
+remove ArraysN
 Note as ArraysN #gold
 These both types
 are NOT related!!!
+(hierarchically)
 end note
 ArraysN .. ArrayN
 ArraysN .u. NativeN
@@ -103,7 +133,7 @@ ArraysN .u. NativeN
 NativeArray ...|> IReadOnlyList
 NativeArray ...|> IList
 
-ReadOnlyCollection <.. Array
+ReadOnlyCollection <.u. Array
 
 IReadOnlyList--|>IReadOnlyCollection
 
@@ -113,6 +143,17 @@ ICollection --|> IEnumerable
 IReadOnlyCollection --|> IEnumerable
 
 Enumerable ..> IEnumerable
+
+Stack ..|> IEnumerable
+Stack ..|> IReadOnlyCollection
+
+Queue ..|> IEnumerable
+Queue ..|> IReadOnlyCollection
+
+HashSet ..|> ICollection
+HashSet ..|> IEnumerable
+HashSet ..|> IReadOnlyCollection
+note on link : .NET >= 4.6
 
 '''''''''''''
 right footer (CC-BY) RGV, 2021
