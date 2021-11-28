@@ -79,14 +79,14 @@ List..|>IList
 List..|>IReadOnlyList
 
 note as NativeN
-This class stands for
+This stands for
 common C# arrays:
 Example: int[] intArray;
 end note
 NativeN .. NativeArray
 
 note as ArrayN
-This class stands for
+This stands for
 Array class, a class
 C# provides to deal with
 array-related operations.
@@ -94,7 +94,7 @@ end note
 ArrayN .. Array
 
 Note as ArraysN #gold
-This both classes
+These both types
 are NOT related!!!
 end note
 ArraysN .. ArrayN
