@@ -1,0 +1,94 @@
+@startuml
+title GenderRatios
+center header Pokémon | Domain Model
+'''''''''''''
+'''''''''''''
+
+object Genderless{ 
+    IsGenderLess = true
+    --
+    PercentageToBeMale = 0%
+    PercentageToBeFemale = 0%
+    --
+    (RatioFemaleMale = 0♀ : 0♂)
+}
+
+object MaleOnly{
+    IsGenderLess = false
+    --
+    PercentageToBeMale = 100%
+    PercentageToBeFemale = 0%
+    --
+    (RatioFemaleMale = 0♀ : 1♂)
+}
+
+object MostlyMale{
+    IsGenderLess = false
+    --
+    PercentageToBeMale = 87.5%
+    PercentageToBeFemale = 12.5%
+    --
+    (RatioFemaleMale = 1♀ : 7♂)
+}
+
+object UsuallyMale{
+    IsGenderLess = false
+    --
+    PercentageToBeMale = 75%
+    PercentageToBeFemale = 25%
+    --
+    (RatioFemaleMale = 1♀ : 3♂)
+}
+
+object Balanced{
+    IsGenderLess = false
+    --
+    PercentageToBeMale = 50%
+    PercentageToBeFemale = 50%
+    --
+    (RatioFemaleMale = 1♀ : 1♂)
+}
+
+object UsuallyFemale{
+    IsGenderLess = false
+    --
+    PercentageToBeMale = 25%
+    PercentageToBeFemale = 75%
+    --
+    (RatioFemaleMale = 3♀ : 1♂)
+}
+
+object MostlyFemale{
+    IsGenderLess = false
+    --
+    PercentageToBeMale = 12.5%
+    PercentageToBeFemale = 87.5%
+    --
+    (RatioFemaleMale = 7♀ : 1♂)
+}
+
+object FemaleOnly{
+    IsGenderLess = false
+    --
+    PercentageToBeMale = 0%
+    PercentageToBeFemale = 100%
+    --
+    (RatioFemaleMale = 1♀ : 0♂)
+}
+
+'''''''''''''
+
+Balanced .d. Genderless #transparent
+
+MaleOnly .u. MostlyMale #transparent
+MostlyMale .r. UsuallyMale #transparent
+UsuallyMale .r. Balanced #transparent
+
+FemaleOnly .u. MostlyFemale #transparent
+MostlyFemale .l. UsuallyFemale #transparent
+UsuallyFemale .l. Balanced #transparent
+
+'''''''''''''
+'''''''''''''
+right footer (CC-BY) RGV, 2021
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+title CatchRates
+center header Pokémon | Domain Model
+'''''''''''''
+allowmixing
+'''''''''''''
+
+object Dummies{ 
+    +255/255
+}
+
+object Legends{
+    +3/255
+}
+
+object Starters{
+    +45/255
+}
+
+collections OthersTBC
+
+'''''''''''''
+'''''''''''''
+right footer (CC-BY) RGV, 2021
+@enduml

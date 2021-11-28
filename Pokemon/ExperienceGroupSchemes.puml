@@ -1,0 +1,85 @@
+@startuml
+title ExperienceGroup Schemes
+center header Pokémon | Domain Model
+'''''''''''''
+'''''''''''''
+
+object Slow{ 
+    <math> Exp = 5/4 lvl^3 </math>
+}
+
+object MediumSlow{ 
+    <math> Exp = 6/5 lvl^3 - 15lvl^2 + 100lvl -140 </math>
+}
+
+object MediumFast{
+    <math> Exp = lvl^3 </math>
+}
+
+object Fast{
+    <math> Exp = 4/5 lvl^3 </math>
+}
+
+object Erratic{
+    <math>Exp={((lvl^3(100-lvl))/50, lvl<50),((lvl^3(150-lvl))/100, 50<=lvl<68),((lvl^3 floor((1911-10lvl)/3))/500, 68<=lvl<98),((lvl^3(160-lvl))/100, 98<=lvl):}</math>
+}
+
+object Fluctuating{
+        <math>Exp={(lvl^3((floor((lvl+1)/3)+24)/50), lvl<15),((lvl^3(lvl+14)/50), 15<=lvl<36),(lvl^3((floor((lvl)/2)+32)/500), 36<=lvl):}</math>
+}
+
+'''''''''''''
+
+MediumSlow -r- Slow #transparent
+Slow -r- MediumFast #transparent : 125% > 
+Fast -l- MediumFast #transparent : 75% > 
+
+Erratic -u- MediumSlow #transparent
+Fluctuating -u- Fast #transparent
+
+'''''''''''''
+'''''''''''''
+right footer (CC-BY) RGV, 2021
+@enduml@startuml
+title ExperienceGroup Schemes
+center header Pokémon | Domain Model
+'''''''''''''
+'''''''''''''
+
+object Slow{ 
+    <math> Exp = 5/4 lvl^3 </math>
+}
+
+object MediumSlow{ 
+    <math> Exp = 6/5 lvl^3 - 15lvl^2 + 100lvl -140 </math>
+}
+
+object MediumFast{
+    <math> Exp = lvl^3 </math>
+}
+
+object Fast{
+    <math> Exp = 4/5 lvl^3 </math>
+}
+
+object Erratic{
+    <math>Exp={((lvl^3(100-lvl))/50, lvl<50),((lvl^3(150-lvl))/100, 50<=lvl<68),((lvl^3 floor((1911-10lvl)/3))/500, 68<=lvl<98),((lvl^3(160-lvl))/100, 98<=lvl):}</math>
+}
+
+object Fluctuating{
+        <math>Exp={(lvl^3((floor((lvl+1)/3)+24)/50), lvl<15),((lvl^3(lvl+14)/50), 15<=lvl<36),(lvl^3((floor((lvl)/2)+32)/500), 36<=lvl):}</math>
+}
+
+'''''''''''''
+
+MediumSlow -r- Slow #transparent
+Slow -r- MediumFast #transparent : 125% > 
+Fast -l- MediumFast #transparent : 75% > 
+
+Erratic -u- MediumSlow #transparent
+Fluctuating -u- Fast #transparent
+
+'''''''''''''
+'''''''''''''
+right footer (CC-BY) RGV, 2021
+@enduml

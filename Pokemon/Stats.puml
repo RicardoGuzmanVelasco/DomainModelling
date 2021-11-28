@@ -1,0 +1,53 @@
+@startuml
+title Stats
+center header Pokémon | Domain Model
+'''''''''''''
+'''''''''''''
+
+class Stat <<(N, orchid) ℕ[0,255]>>
+
+class Stats <<(S, orange)>>{
+    +HealthPoints: Stat
+    +Attack: Stat
+    +Defense: Stat
+    +Speed: Stat
+}
+
+class FirstGenStats <<(S, orange)>>{
+    +Special: Stat
+}
+
+class SecondOrHigherGensStats <<(S, orange)>>{
+    +SpecialAttack: Stat
+    +SpecialDefense: Stat
+}
+
+'''''''''''''
+
+Stats *-- "4" Stat
+
+FirstGenStats -u-|> Stats
+FirstGenStats *-u- "5" Stat
+
+SecondOrHigherGensStats -u-|> Stats
+SecondOrHigherGensStats *-u- "6" Stat
+
+note as Note
+ With Generation II,
+ Special stat was split into
+ Special Attack and Special Defense,
+ meaning Pokémon could have
+ different base stat values for both.
+ — Bulbapedia.
+end note
+Note .u. SecondOrHigherGensStats
+Note .u. FirstGenStats
+
+'''''''''''''
+legend
+|       <#orange> S | ValueObjects       |
+|       <#orchid> N | Numbers            |
+end legend
+'''''''''''''
+right footer (CC-BY) RGV, 2021
+@enduml
