@@ -5,7 +5,7 @@ center header Pokémon | Domain Model
 '''''''''''''
 
 object Genderless{
-    PercentageToBeMale = 0%
+    PercentageToBeMale = 0% 
     PercentageToBeFemale = 0%
     --
     (RatioFemaleMale = 0♀ : 0♂)

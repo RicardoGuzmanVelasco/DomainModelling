@@ -1,18 +1,15 @@
 @startuml
 'https://plantuml.com/class-diagram
-title Extensive usage
+title Complete usage [WIP]
 center header C# | Collections | Generic
 '''''''''''''
 
-note as Note
-TBC.
-end note
+class NativeArray{
++<T>[]() {constructor}
+}
 
-'remove ReadOnlyCollection
 class ReadOnlyCollection<T>
 {
-    +Count: int {get;}
-    +Item[int] {indexer}
     +Items: IList<T>
 }
 
@@ -25,6 +22,20 @@ class List<T>
     {method}...
     +IndexOf(T): int
     {method}...
+}
+
+abstract class Array
+{
+    +{static}Empty<T>(): T[0]
+    +{static}AsReadOnly<T>(array: T[]): ReadOnlyCollection<T>
+    {method}...  
+}
+
+class  Enumerable<T> <<Static>>
+{
+    +{static}Empty<T>(): IEnumerable<T>
+    +{static}Range<T>(): IEnumerable<T>
+    +{static}Repeat<T>(): IEnumerable<T>
 }
 
 interface IList<T>
@@ -67,12 +78,41 @@ ReadOnlyCollection ..|> IReadOnlyList
 List..|>IList
 List..|>IReadOnlyList
 
+note as NativeN
+This class stands for
+common C# arrays:
+Example: int[] intArray;
+end note
+NativeN .. NativeArray
+
+note as ArrayN
+This class stands for
+Array class, a class
+C# provides to deal with
+array-related operations.
+end note
+ArrayN .. Array
+
+Note as ArraysN #gold
+This both classes
+are NOT related!!!
+end note
+ArraysN .. ArrayN
+ArraysN .u. NativeN
+
+NativeArray ...|> IReadOnlyList
+NativeArray ...|> IList
+
+ReadOnlyCollection <.. Array
+
 IReadOnlyList--|>IReadOnlyCollection
 
 IList --|> ICollection
 ICollection --|> IEnumerable
 
 IReadOnlyCollection --|> IEnumerable
+
+Enumerable ..> IEnumerable
 
 '''''''''''''
 right footer (CC-BY) RGV, 2021
