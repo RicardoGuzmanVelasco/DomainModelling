@@ -1,0 +1,5 @@
+# Visual Studio cache directory
+.vs/
+
+# Exclude rider idea data
+.idea
