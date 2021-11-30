@@ -1,21 +1,14 @@
 @startuml
 'https://plantuml.com/class-diagram
-title Basic with array
+title Specific-purpose data structures
 center header C# | Collections | Generic
 '''''''''''''
-'TODO: DICTIONARIES ALL HIERARCHY
-'TODO: SETS ALL HIERARCHY
-'TODO: NON GENERICS!
+'''''''''''''
+'TODO: DICTIONARIES, ALL HIERARCHY
+'TODO: NON GENERICS! https://docs.microsoft.com/en-us/archive/blogs/kcwalina/system-collections-vs-system-collection-generic-and-system-collections-objectmodel
+'IENUMERATOR!!!
 
-class NativeArray
-{
-+<T>[]() {constructor}
-}
-
-class ReadOnlyCollection<T>
-{
-    +Items: IList<T>
-}
+''''''''''''' Common
 
 class List<T>
 {
@@ -26,42 +19,6 @@ class List<T>
     {method}...
     +IndexOf(T): int
     {method}...
-}
-
-abstract class Array
-{
-    +{static}Empty<T>(): T[0]
-    +{static}AsReadOnly<T>(array: T[]): ReadOnlyCollection<T>
-    {method}...  
-}
-
-class Stack<T>
-{
-    +Peek(): T
-    +Pop(): T
-    +Push(item: T): void
-}
-
-class Queue<T>
-{
-    +Enqueue(item: T)
-    +Dequeue(): T
-    +Peek(): T
-}
-
-class HashSet<T>
-{
-    +UnionWith(other IEnumerable<T>)
-    +IntersectWith(other IEnumerable<T>)
-    +ExceptWith(other IEnumerable<T>)
-    {method}...
-}
-
-class  Enumerable<T> <<Static>> 
-{
-    +{static}Empty<T>(): IEnumerable<T>
-    +{static}Range<T>(): IEnumerable<T>
-    +{static}Repeat<T>(): IEnumerable<T>
 }
 
 interface IList<T>
@@ -96,6 +53,112 @@ interface IEnumerable<T>
     +GetEnumerator()
 }
 
+interface IComparer<in T> 
+interface IEqualityComparer<in T> 
+
+''''''''''''' Sets
+
+interface IReadOnlySet<T> {
++IsSubsetOf(:IEnumerable<T>)
+    +IsSupersetOf(:IEnumerable<T>)
+    +Overlaps(:IEnumerable<T>)
+    {method}...
+}
+interface ISet<T> 
+{
+    +Add(:T): bool
+    ..
+    +IntersectWith(:IEnumerable<T>)
+    +UnionWith(:IEnumerable<T>)
+    +IsSubsetOf(:IEnumerable<T>)
+    +IsSupersetOf(:IEnumerable<T>)
+    +Overlaps(:IEnumerable<T>)
+    {method}...
+}
+
+class SortedSet<T> 
+
+
+class HashSet<T>
+
+
+''''''''''''' Dictionaries
+
+''''''''''''' Extensive
+
+class NativeArray
+{
++<T>[]() {constructor}
+}
+
+class ReadOnlyCollection<T>
+{
+    +Items: IList<T>
+}
+
+class Collection<T> 
+{
+    +ClearItems()
+    +InsertItem(index: int, item: T)
+    +RemoveItem(index: int, item: T)
+    +SetItem(index: int, item: T)
+    {method}...
+}
+
+class ObservableCollection<T> 
+{
+    +CollectionChanged {event}
+    +PropertyChanged {event}
+}
+
+class LinkedList<T> 
+{
+    +First: LinkedListNote<T>
+    +Last: LinkedListNote<T>
+    +AddAfter(:LinkedListNode<T>, T): LinkedListNode<T>
+    +AddAfter(:LinkedListNode<T>, :LinkedListNode<T>)
+    {method}...
+}
+class LinkedListNode<T> 
+{
+    +List: LinkedList<T>
+    +Next: LinkedListNode<T>
+    +Previous: LinkedListNode<T>
+    ..
+    +Value: T
+}
+
+abstract class Array
+{
+    +{static}Empty<T>(): T[0]
+    +{static}AsReadOnly<T>(array: T[]): ReadOnlyCollection<T>
+    {method}...  
+}
+
+class Stack<T>
+{
+    +Peek(): T
+    +Pop(): T
+    +Push(item: T): void
+}
+
+class Queue<T>
+{
+    +Enqueue(item: T)
+    +Dequeue(): T
+    +Peek(): T
+}
+
+class  Enumerable<T> <<Static>> 
+{
+    +{static}Empty<T>(): IEnumerable<T>
+    +{static}Range<T>(): IEnumerable<T>
+    +{static}Repeat<T>(): IEnumerable<T>
+}
+
+
+'''''''''''''
+'''''''''''''
 '''''''''''''
 
 ReadOnlyCollection ..|> IList
@@ -104,56 +167,51 @@ ReadOnlyCollection ..|> IReadOnlyList
 List..|>IList
 List..|>IReadOnlyList
 
-remove NativeN
-note as NativeN
-This stands for
-common C# arrays:
-Example: int[] intArray;*
-end note
-NativeN .. NativeArray
+IList --|> ICollection
+ICollection --|> IEnumerable
 
-remove ArrayN
-note as ArrayN
-This stands for
-Array class, a class
-C# provides to deal with
-array-related operations.
-end note
-ArrayN .. Array
+IReadOnlyList--|>IReadOnlyCollection
+IReadOnlyCollection --|> IEnumerable
+Enumerable ..> IEnumerable
 
-remove ArraysN
-Note as ArraysN #gold
-These both types
-are NOT related!!!
-(hierarchically)
-end note
-ArraysN .. ArrayN
-ArraysN .u. NativeN
+'''''''''''''
+
+ISet --|> ICollection
+
+IReadOnlySet --|> IReadOnlyCollection
+
+SortedSet ..|> ISet
+SortedSet ..|> IReadOnlySet
+    SortedSet --> IComparer
+    
+HashSet ..|> ISet
+HashSet ..|> IReadOnlySet
+    HashSet --> IEqualityComparer
+
+'''''''''''''
 
 NativeArray ...|> IReadOnlyList
 NativeArray ...|> IList
 
 ReadOnlyCollection <.u. Array
-
-IReadOnlyList--|>IReadOnlyCollection
-
-IList --|> ICollection
-ICollection --|> IEnumerable
-
-IReadOnlyCollection --|> IEnumerable
-
-Enumerable ..> IEnumerable
-
+'
 Stack ..|> IEnumerable
 Stack ..|> IReadOnlyCollection
 
 Queue ..|> IEnumerable
 Queue ..|> IReadOnlyCollection
 
-HashSet ..|> ICollection
-HashSet ..|> IEnumerable
-HashSet ..|> IReadOnlyCollection
-note on link : .NET >= 4.6
+
+Collection ..|> IList 
+Collection ..|> IReadOnlyList
+Collection --> List
+
+ObservableCollection --|> Collection
+
+LinkedList ..|> ICollection
+LinkedList ..|> IReadOnlyCollection
+    LinkedList *-- "0..*" LinkedListNode
+    LinkedList <.. LinkedListNode
 
 '''''''''''''
 right footer (CC-BY) RGV, 2021
