@@ -1,5 +1,7 @@
 @startuml
 skin rose
+'skinparam nodesep 40
+'skinparam ranksep 25
 
 header Animal Restaurant
 title Tutorial KeyAbstractions
@@ -49,7 +51,6 @@ MainHall --|> Room #green
 Table --|> Facility
 Table ..> MainHall : is in
 
-
 Promotion -- Customer : attracts
 Promotion -u-> "10" Tap : requires
 
@@ -67,18 +68,19 @@ Recipe --> Requirement : to learn
 Facility --> Room : is in
 Facility --> Cod : costs
 
+Stove -u-|> Facility #green
 Stove ..> Kitchen #green : is in
 Stove --> Recipe #green : receives
 Stove --> Meal #green : <<auto>>\ncooks
 Stove --> Order #green : <<auto>>\nserves
-Stove -u-> Speed #green : has
+Stove --> Speed #green : has
 
-Perk --> "amount" Cod
+Perk *-- "amount" Cod
 
 SpecialCustomer -u-> MainHall #gray : comes into\nwalks by
 SpecialCustomer -u-> Time #gray : walks for some
 SpecialCustomer -u-> Cod #gray : toss out
 
 '''''''''''''''
-footer v1
+right footer v2
 @enduml
