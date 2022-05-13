@@ -1,0 +1,84 @@
+@startuml
+skin rose
+
+header Animal Restaurant
+title Tutorial KeyAbstractions
+'''''''''''''''
+
+class Customer
+class Angry <<State>>
+class SpecialCustomer
+
+class Cod <<Money>>
+
+class Room
+class Kitchen
+class MainHall
+
+class Facility
+class Table
+class Stove
+
+class Meal
+class Recipe
+
+class Promotion
+class PromoteDiscount
+
+class ChefSecret
+class Requirement
+class Perk
+
+class Time
+class Speed
+class Tap
+
+'''''''''''''''
+
+Customer "1" --> "1" Table #blue : eats in 
+Customer --> Time #blue : thinking\nwaiting\neating
+Customer --> Cod #blue : throws\nafter\neating
+Customer --> Meal #blue : orders
+Customer --> Angry #blue : gets\nif not\neat
+Customer --> Order #blue : awaits for
+Customer --> MainHall #blue : comes into
+
+Kitchen --|> Room #green 
+MainHall --|> Room #green
+
+Table --|> Facility
+Table ..> MainHall : is in
+
+
+Promotion -- Customer : attracts
+Promotion -u-> "10" Tap : requires
+
+PromoteDiscount --> "15" Promotion #gray : <<auto>>\ncompletes
+PromoteDiscount --> Time #gray : takes
+
+ChefSecret --> Requirement #gray : to\ncomplete
+ChefSecret --> Perk #gray : gives\nwhen\ncompleted
+
+Recipe --> Time : takes
+Recipe --> "earnings" Money
+Recipe --> Meal : makes
+Recipe --> Requirement : to learn
+
+Facility --> Room : is in
+Facility --> Cod : costs
+
+Stove ..> Kitchen #green : is in
+Stove --> Recipe #green : receives
+Stove --> Meal #green : <<auto>>\ncooks
+Stove --> Order #green : <<auto>>\nserves
+Stove -u-> Speed #green : has
+
+Perk --> "amount" Cod
+
+SpecialCustomer -u-> MainHall #gray : comes into\nwalks by
+SpecialCustomer -u-> Time #gray : walks for some
+SpecialCustomer -u-> Cod #gray : toss out
+
+'''''''''''''''
+footer v1
+@enduml
