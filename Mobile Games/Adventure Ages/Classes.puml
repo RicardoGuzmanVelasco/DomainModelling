@@ -1,0 +1,185 @@
+@startuml
+skin rose
+'skinparam nodesep 40
+'skinparam ranksep 25
+header Hyper Hippo | AdVenture Ages
+'''''''''''''''
+title Tutorial KeyAbstractions
+'''''''''''''''
+
+class Name <<(V, orange) Value>>
+class Icon <<(V, orange) Value>>
+
+class Coin
+class Age
+
+class Hero
+class Card
+        class Rarity <<(V, orange) Value>>
+        class Color <<(V, orange) Value>>
+    class Level <<(V, orange) Number>>
+    class Bonus
+
+Coin *-- Name
+Coin *-- Icon
+
+Age *-- Coin
+
+Hero -u-|> Card
+Hero --> Age : is from
+Card "*" o-- "1" Rarity
+Rarity "1" *-- "1" Color : {exclusive}
+Card "*" o-- "1" Level
+Card *-- Bonus
+
+Bonus "*" --> "1" Age : focus on
+Age *-- "*" Relic : ordered list of
+
+Relic *-- Name
+Relic *-- Icon
+
+'''''''''''''''
+'title Narrative
+'''''''''''''''
+'Player -u-|> Agent
+'Player --> BronzeAge : is in
+'
+'class "Lost in Time" as Lost <<(S, violet) State>>
+'BronzeAge -u-|> Age
+'Age -l-> Lost : are
+'
+'class "Time Travel\nOperations\nMonitor" as TTOM
+'class "TTOM" as TTOMName
+'
+'class "Restore\nPeople\nin Time" as Mission <<(M, orange) Mission>>
+'
+'Player -r-> TTOM 
+'Player --> Mission : mission
+'
+'TTOM ..> TTOMName : is called
+'
+'Guide .. (Player, TTOM)
+'
+'Agent -r-> Guide : has 
+
+'''''''''''''''
+
+' [x] Is in the Bronze Age
+' [x] Player is agent
+
+' [x] Time Travel Operations Monitor
+' [x] guides you
+
+' [x] Ages are lost in time.
+
+' [ ] Order gladiators to fight
+' [ ] and produce weapons
+
+' [ ] Produce weapons (by time or tap)
+' [ ] to buy more gladiators
+
+' [ ] gladiator has price in weapons
+' [ ] gladiator produces 3 weapons
+' [ ] gladitor lasts 2 seconds in producing
+    ' [ ] to produce you tap, unless you have automated production
+' [ ] gladiators also restores people in time (1)
+' [ ] gladiators costs 10 weapons, 1 people
+' [ ] gladiators has:
+' [ ]  x1 power, x1 discount, x1 speed
+' [ ] 1% luck, x2 bonus
+
+' [ ] Spartacus hero automate gladiators
+' [ ] Spartacus has speed x2
+' [ ] spartacus has level 1?
+' [ ] spartacus is found in capsules
+
+' [ ] unlock chariots by owing 25 gladiators
+
+' [ ] after online, people restored in time
+' [ ] more time, more people
+
+' [ ] after 25 gladiators
+' [ ] you can afford chariots, which produce 4 gladiators
+' [ ] chariot costs 10 gladiators, 100 weapons and 1 person
+
+' [ ] missions are operational after some chariots
+' [ ] missions make you eran rewards
+' [ ] also advance your ages
+
+' [ ] mission example: assemble (own) 25 chariots
+' [ ] you will gain 2500 weapons
+' [ ] after mission complete, claim your reward
+' [ ] mission example: collect 5k weapons to gain 5k weapons
+' [ ] mission example: own 100 chariots to gain 5 xp
+
+' [ ] exp is used to rank up
+' [ ] ranks up makes you earn special rewards
+' [ ] ranks up also reset the timeline
+' [ ] ranks up unlocks new heroes to by found in capsules 
+
+' [ ] example: rank 2 -> gain 1 capsule
+' [ ] capsule rewards: 35 exp, 1 spartacus
+
+' [ ] gladiators, chariots are an Age Relic
+' [ ] heroes are cards
+' [ ] buying enough age relics rewards you with xp
+' [ ] xp is used to level up your heroes
+' [ ] each hero' [ ] s level needs a certain amount of cards to unlock level up
+' [ ] each hero' [ ] s level needs a certain amount of xp to level up
+' [ ] level up Spartacus, from x2 bonus to x4 bonus
+' [ ] after 50 chariots, unlocks arena
+
+' [ ] time machine upgrades
+' [ ] use weapons to upgrade your time machine
+' [ ] example: population boost in return (from 1/s to 2/s, +1/s)
+
+' [ ] boosts by video x2 all Age production power (hammer) for a short time (4h)
+' [ ] boosts are stackable (max 16h).
+
+' [ ] Julius Caesar increases the production Power of all Bronze ages Relics
+' [ ] then an Age Relic belongs to a concrete Age
+' [ ] cards has a rarity: common (blue) < rare (green) < legendary (purple) < historic (red)
+' [ ] Trajan decreases the cost of all Bronze Age relics (x10, x100...)
+
+' [ ] store has capsules costing gems
+' [ ] store has a free capsule each 4h
+' [ ] store stacks up to 2 free capsules
+' [ ] copper capsule 250 gems, crystal capsule 750 gems, carbon capsule 2500 gems
+' [ ] copper capsule guarantees 1 legendary hero
+' [ ] crystal capsule guarantees 5 legendary heroes
+' [ ] carbon capsule guarantees 1 historic hero
+
+' [ ] at first, each Age has 3 relics to produce
+' [ ] relic 1 produces respective age' [ ] s coin
+' [ ] relic 2 prouces relic 1 units
+' [ ] relic 3 produces relic 2 units
+' [ ] at rank 4, Roads are unlocked in bronze age, so 3 is no the max of relics
+
+' [ ] how the fuck you make your lvl gauge grows?
+' [ ] answer: 1 mission completed = 1 gauge progress
+
+' [ ] bronze sword is the icon of weapons, of the tab where you see your Bronze Age productions
+' [ ] papire is the icon of knowledge, of the tab where you see your Medieval Age productions
+' [ ] brush is the icon of art, of the tab where you see your Renaissance Age productions
+' [ ] gear is the icon of ?, of the tab where you see your Industrial Age productions 
+
+' [ ] unlocking a new age needs satisfy some requirement
+    ' [ ] it seems that requirement is a certain amount of previews Age coin
+    ' [ ] example: unlocking medieval age needs collect 50B weapons
+    ' [ ] example: unlocking renaissance age needs collect 500T knowledge
+' [ ] The Medieval Age wil get you more xp and population
+' [ ] population is the metric whose unit is people
+
+' [ ] Medieval age has monks, chapels and knights
+
+' [ ] heroes (cards) unlocks at level 2
+' [ ] upgrades unlocks at level 3?
+' [ ] store unlocks at level 4?
+' [ ] event unlocks at level 8
+' [ ] ops unlocks at rank 6
+
+' [ ] as of rank 4, 2 concurrent missions
+
+'''''''''''''''
+right footer v1
+@enduml
