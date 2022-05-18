@@ -60,14 +60,14 @@ class Experience <<(V, orange) Number>>
 Currency *-- Name
 Currency *-- Icon
 
-Level -u> Experience : requires\nto unlock
+Level --> Experience : requires\nto unlock
 
 Age *-- Currency
 
 Hero -u-|> Card
 Hero --> Age : is from
 Card "*" o-- "1" Rarity
-Rarity "1" *-u- "1" Color : {exclusive}
+Rarity "1" *-- "1" Color : {exclusive}
 Card "*" o-- "1" Level
 Card *-- Bonus
 
@@ -125,13 +125,13 @@ SpeedUpBonus --> Production #green
 DiscountBonus --> Age #green 
 DiscountBonus ..> Currency #green 
 
-PopulationBonus ..> Population #green 
-PopulationBonus --> Currency #green 
+PopulationBonus .u.> Population #green 
+PopulationBonus -u-> Currency #green 
 
 ExtraResourcesChanceBonus --> Age #green 
 ExtraResourcesChanceBonus --> Relic #green : all in age
 ExtraResourcesChanceBonus ..> Currency #green 
-ExtraResourcesChanceBonus *-u- Chance  #green 
+ExtraResourcesChanceBonus *-- Chance  #green 
 
 ProductionPowerBonus --> Relic #green 
 ProductionPowerBonus ..> Speed #green 
