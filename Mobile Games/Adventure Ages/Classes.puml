@@ -107,7 +107,7 @@ class ExtraResourcesChanceBonus <<Bonus>>
 class Population <<(V, orange) Value>>
 class Chance <<(V, orange) %>>
 
-Rank --|> Level
+
 
 note as BonusNote
 Todos los <<Bonus>>
