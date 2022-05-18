@@ -19,8 +19,6 @@ S
 #SquidGame/SquidGameContest2020.puml,3\f\3f4bcb69e067521facc202637f9f0a6db4af087e
 C
 C#/Collections.puml,c\f\cfbf1f349192641357348459f3ac99c7ecdfa6d8
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 T
 $DDD/LargescaleStructurePatterns.puml,a\5\a570d63bd4158ab1488df7899714dd090d68dead
 S

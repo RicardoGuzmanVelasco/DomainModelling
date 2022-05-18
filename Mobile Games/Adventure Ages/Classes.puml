@@ -92,56 +92,57 @@ Relic *-- Icon
 '''''''''''''''
 title Cards
 '''''''''''''''
+abstract class Bonus{
+{todos los Bonus
+son de este tipo}
+}
+
 remove Name
 remove Hero
 remove Produced
 remove Player
 remove RankPlayer
-class ProductionPowerBonus <<Bonus>>
-class ResourcesBonus <<Bonus>>
-class DiscountBonus <<Bonus>>
-class SpeedUpBonus <<Bonus>>
-class AutomationBonus <<Bonus>>
-class PopulationBonus <<Bonus>>
-class ExtraResourcesChanceBonus <<Bonus>>
+class ProductionPowerBonus <<(B, physical) Bonus>>
+class ResourcesBonus <<(B, physical) Bonus>>
+class DiscountBonus <<(B, physical) Bonus>>
+class SpeedUpBonus <<(B, physical) Bonus>>
+class AutomationBonus <<(B, physical) Bonus>>
+class PopulationBonus <<(B, physical) Bonus>>
+class ExtraResourcesChanceBonus <<(B, physical) Bonus>>
 class Population <<(V, orange) Value>>
 class Chance <<(V, orange) %>>
 
 
 
-note as BonusNote
-Todos los <<Bonus>>
-son de este tipo.
-end note
-BonusNote .. Bonus
-
 Bonus *-- Icon
  
-AutomationBonus --> Relic : automates 
-AutomationBonus ..> Production
+AutomationBonus --> Relic #green : automates 
+AutomationBonus ..> Production #green 
 
-SpeedUpBonus ..> Speed
-SpeedUpBonus --> Production
+SpeedUpBonus ..> Speed #green 
+SpeedUpBonus --> Production #green 
 
-DiscountBonus --> Age
-DiscountBonus ..> Currency
+DiscountBonus --> Age #green 
+DiscountBonus ..> Currency #green 
 
-PopulationBonus ..> Population
-PopulationBonus --> Currency
+PopulationBonus ..> Population #green 
+PopulationBonus --> Currency #green 
 
-ExtraResourcesChanceBonus --> Age
-ExtraResourcesChanceBonus --> Relic : all in age
-ExtraResourcesChanceBonus ..> Currency
-ExtraResourcesChanceBonus *-- Chance 
+ExtraResourcesChanceBonus --> Age #green 
+ExtraResourcesChanceBonus --> Relic #green : all in age
+ExtraResourcesChanceBonus ..> Currency #green 
+ExtraResourcesChanceBonus *-u- Chance  #green 
 
-ProductionPowerBonus --> Relic
-ProductionPowerBonus ..> Speed
-ProductionPowerBonus *-- AutomationBonus
+ProductionPowerBonus --> Relic #green 
+ProductionPowerBonus ..> Speed #green 
+ProductionPowerBonus *-- AutomationBonus #green 
 
 Bonus --> Rank : unlocks at
 
-ResourcesBonus --> Age
-ResourcesBonus ..> Relic : all in age
+ResourcesBonus --> Age #green 
+ResourcesBonus ..> Relic #green : all in age
+
+Rank --|> Level
 
 '''''''''''''''
 
