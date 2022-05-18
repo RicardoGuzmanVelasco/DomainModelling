@@ -2,61 +2,8 @@
 skin rose
 'skinparam nodesep 40
 'skinparam ranksep 25
+
 header Hyper Hippo | AdVenture Ages
-'''''''''''''''
-title Tutorial KeyAbstractions
-'''''''''''''''
-
-class Name <<(V, orange) Value>>
-class Icon <<(V, orange) Value>>
-
-class Currency
-class Age
-
-class Hero
-class Card
-
-        class Rarity <<(V, orange) Value>>
-        class Color <<(V, orange) Value>>
-    class Level <<(V, orange) Number>>
-    class Bonus
-
-class Relic
-class Production
-class Speed <<(V, orange) Number/sec>>
-abstract class Produced
-
-class Player
-class Rank <<(V, orange) Number>>
-'''''''''''''''
-
-Currency *-- Name
-Currency *-- Icon
-
-Age *-- Currency
-
-Hero -u-|> Card
-Hero --> Age : is from
-Card "*" o-- "1" Rarity
-Rarity "1" *-u- "1" Color : {exclusive}
-Card "*" o-- "1" Level
-Card *-- Bonus
-
-Bonus "*" --> "1" Age : focus on
-Age *-- "list" Relic
-
-Relic *-- Name
-Relic *-- Icon
-
-Rank .. (Level, Player)
-'Level -l- Player #transparent 
-
-Relic -u-|> Production
-Production o-- Speed
-Production -> Produced : produces
-
-Currency -u-|> Produced
-Relic -u-|> Produced
 
 '''''''''''''''
 'title Narrative
@@ -81,6 +28,120 @@ Relic -u-|> Produced
 'Guide .. (Player, TTOM)
 '
 'Agent -r-> Guide : has 
+
+
+'''''''''''''''
+title Tutorial KeyAbstractions
+'''''''''''''''
+
+class Name <<(V, orange) Value>>
+class Icon <<(V, orange) Value>>
+
+class Currency
+class Age
+
+class Hero
+class Card
+        class Rarity <<(V, orange) Value>>
+        class Color <<(V, orange) Value>>
+    class Level <<(V, orange) Number>>
+    abstract class Bonus
+
+class Relic
+class Production
+class Speed <<(V, orange) Number/sec>>
+abstract class Produced
+
+class Player
+class Rank <<(V, orange) Number>>
+class Experience <<(V, orange) Number>>
+'''''''''''''''
+
+Currency *-- Name
+Currency *-- Icon
+
+Level -u> Experience : requires\nto unlock
+
+Age *-- Currency
+
+Hero -u-|> Card
+Hero --> Age : is from
+Card "*" o-- "1" Rarity
+Rarity "1" *-u- "1" Color : {exclusive}
+Card "*" o-- "1" Level
+Card *-- Bonus
+
+Bonus "*" --> "1" Age : focus on
+Age *-- "list" Relic
+
+Relic *-- Name
+Relic *-- Icon
+
+
+'''''''''''''''
+'No cards
+   
+'Rank .. (Level, Player)
+'Relic -u-|> Production
+'Production o-- Speed
+'Production -> Produced : produces
+'
+'Currency -u-|> Produced
+'Relic -u-|> Produced
+
+'''''''''''''''
+title Cards
+'''''''''''''''
+remove Name
+remove Hero
+remove Produced
+remove Player
+remove RankPlayer
+class ProductionPowerBonus <<Bonus>>
+class ResourcesBonus <<Bonus>>
+class DiscountBonus <<Bonus>>
+class SpeedUpBonus <<Bonus>>
+class AutomationBonus <<Bonus>>
+class PopulationBonus <<Bonus>>
+class ExtraResourcesChanceBonus <<Bonus>>
+class Population <<(V, orange) Value>>
+class Chance <<(V, orange) %>>
+
+Rank --|> Level
+
+note as BonusNote
+Todos los <<Bonus>>
+son de este tipo.
+end note
+BonusNote .. Bonus
+
+Bonus *-- Icon
+ 
+AutomationBonus --> Relic : automates 
+AutomationBonus ..> Production
+
+SpeedUpBonus ..> Speed
+SpeedUpBonus --> Production
+
+DiscountBonus --> Age
+DiscountBonus ..> Currency
+
+PopulationBonus ..> Population
+PopulationBonus --> Currency
+
+ExtraResourcesChanceBonus --> Age
+ExtraResourcesChanceBonus --> Relic : all in age
+ExtraResourcesChanceBonus ..> Currency
+ExtraResourcesChanceBonus *-- Chance 
+
+ProductionPowerBonus --> Relic
+ProductionPowerBonus ..> Speed
+ProductionPowerBonus *-- AutomationBonus
+
+Bonus --> Rank : unlocks at
+
+ResourcesBonus --> Age
+ResourcesBonus ..> Relic : all in age
 
 '''''''''''''''
 
