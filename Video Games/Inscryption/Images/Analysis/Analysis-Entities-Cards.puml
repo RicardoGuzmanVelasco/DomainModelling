@@ -1,0 +1,104 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Analysis | Entities | Cards
+header Kalendra.Inscryption
+allowMixing
+'''''''''''''
+
+interface Card{
+cost: Cost [CanBeNull]
+stats: CombatStats
+sigils: Sigil[]
+tribes: Tribe[]
+}
+
+interface AlteredCard{
+sigilGifts: SigilGift[]
+}
+
+class SigilGift <<(S, orange) ValueObject>> {
+sigil: Sigil
+way: SigilGiftSource
+}
+
+class SigilGiftSource <<(S, orange) ValueObject>> {
+id: string
+}
+
+class Currency <<(S, orange) ValueObject>> {
+id: string
+}
+
+class CombatStats <<(S, orange) ValueObject>> {
+attack: int
+health: int
+}
+
+class Cost <<(S, orange) ValueObject>> {
+currency: Currency
+count: int
+}
+
+class Tribe <<(S, orange) ValueObject>> {
+id: string
+}
+class Sigil <<(S, orange) ValueObject>> {
+id: string
+}
+
+class CardModel <<Immutable>>{
+id: string
+}
+class CardInDeck{
+model: CardModel
+}
+class CardPlaying{
+originalCard: CardInDeck
+}
+
+boundary CardView
+
+'''''''''''''
+
+AlteredCard --|> Card
+AlteredCard --> SigilGift
+SigilGift ..> SigilGiftSource
+SigilGift ..> Sigil
+
+Cost *-- Currency
+
+Card *-- CombatStats
+Card *-- "0..1" Cost
+Card *-- "0..n" Tribe
+Card *-- "0..n" Sigil
+
+note as N1
+{Card cannot contain
+repeated of same id}
+
+{any "id" field is not
+empty and is not null}
+end note
+N1 .u. Tribe
+N1 .u. Sigil
+N1 .l. Currency
+
+CardModel ..|> Card
+
+CardInDeck ..|> AlteredCard
+CardInDeck *-- CardModel
+
+CardPlaying ..|> AlteredCard
+CardPlaying *-- CardInDeck
+
+CardView --> AlteredCard
+
+note as N2
+View receives an abstraction
+so it paints every card the same
+end note
+N2 -d- CardView
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

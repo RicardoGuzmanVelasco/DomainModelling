@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+title DomainModel | Entities | Cards details
+header Kalendra.Inscryption
+'''''''''''''
+
+class Currency{
+id: string
+}
+
+class Cost{
+currency: Currency
+count: int
+}
+
+class Tribe{
+id: string
+}
+class Sigil{
+id: string
+}
+
+class Card{
+id: string
+}
+class PlayingCard
+
+class CombatStats{
+attack: int
+health: int
+}
+
+'''''''''''''
+
+Cost *-- Currency
+
+Card *-- Cost
+Card *-- CombatStats
+Card *-- "0..n" Tribe
+Card *-- "0..n" Sigil
+
+PlayingCard *- Card
+PlayingCard *-- CombatStats
+PlayingCard *-- "0..n" Sigil
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Invariants | Cards
+header Kalendra.Inscryption
+remove @unlinked
+'''''''''''''
+
+interface Card{
+cost: Cost [CanBeNull]
+stats: CombatStats
+sigils: Sigil[]
+tribes: Tribe[]
+}
+
+class SigilGift <<(S, orange) ValueObject>> {
+sigil: Sigil
+way: SigilGivenWay
+}
+
+class SigilGivenWay  <<(S, orange) ValueObject>> {
+id: string
+}
+
+class Sigil <<(S, orange) ValueObject>> {
+id: string
+}
+
+class CardModel <<Immutable>>{
+id: string
+}
+
+'''''''''''''
+
+CardModel ..|> Card
+Card *-- Sigil
+
+note as Nid
+{Cannot be null}
+{∀cardModel, id is unique}
+end note
+Nid . CardModel::id
+
+note as NoteCard
+{Cannot be null}
+{Can be empty}
+{Can repeat members*}
+ *Duplicated will be removed
+end note
+NoteCard .r. Card::sigils
+NoteCard .r. Card::tribes
+
+note as NoteCost
+{Either null or cost.count>0*}
+{Either null or cost.currency not null*}
+ *Both are Cost invariants, though
+end note
+NoteCost .l. Card::cost
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

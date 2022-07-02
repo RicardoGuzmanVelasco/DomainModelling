@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/object-diagram
+title DomainModel | Entities | Card example: Cockroach
+header Kalendra.Inscryption
+'''''''''''''
+
+object Cockroach
+object CombatStats{
+attack: 1
+health: 1
+}
+object Cost{
+currency: Bones
+count: 4
+}
+object Tribe{
+Bug
+}
+object Sigil{
+Unkillable
+}
+
+Cockroach *-- CombatStats
+Cockroach *-- Tribe
+Cockroach *-- Cost
+Cockroach *-- Sigil
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

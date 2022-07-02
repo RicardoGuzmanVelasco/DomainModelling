@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/object-diagram
+title DomainModel | Entities | Card example: Rattler
+header Kalendra.Inscryption
+'''''''''''''
+
+object Rattler
+object CombatStats{
+attack: 3
+health: 1
+}
+object Cost{
+none
+}
+object Tribe{
+Reptile
+}
+object Sigil{
+none
+}
+
+Rattler *-- CombatStats
+Rattler *-- Tribe
+Rattler *-- Cost
+Rattler *-- Sigil
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

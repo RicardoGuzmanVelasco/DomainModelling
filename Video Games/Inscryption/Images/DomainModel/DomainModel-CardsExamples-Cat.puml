@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/object-diagram
+title DomainModel | Entities | Card example: Cat
+header Kalendra.Inscryption
+'''''''''''''
+
+object Cat
+object CombatStats{
+attack: 0
+health: 1
+}
+object Cost{
+currency: Sacrifice
+count: 1
+}
+object Tribe{
+none
+}
+object Sigil{
+Many Lives
+}
+
+Cat *-- CombatStats
+Cat *-- Tribe
+Cat *-- Cost
+Cat *-- Sigil
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/object-diagram
+title Infrastructure | Cards definition
+header Kalendra.Inscryption
+'''''''''''''
+
+class CardDefinition <<ScriptableObject>> #technology
+{
+id: string
+stats: CombatStats
+tribes: TribeDefinition[]
+sigils: SigilDefinition[]
+} 
+
+class Cost <<Serializable>>
+{
+    +currency: CurrencyDefinition
+    +count: int
+}
+
+class CombatStats <<Serializable>>
+{
+    +attack: int
+    +health: int
+}
+
+class TribeDefinition <<ScriptableObject>> #technology 
+{
+    id: string
+}
+
+class SigilDefinition <<ScriptableObject>> #technology
+{
+    id: string
+}
+
+class CurrencyDefinition <<ScriptableObject>> #technology
+{
+    id: string
+}
+
+'''''''''''''
+
+CardDefinition *-- Cost
+CardDefinition *-- CombatStats
+CardDefinition *-- TribeDefinition
+CardDefinition *-- SigilDefinition
+
+Cost *-- CurrencyDefinition
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

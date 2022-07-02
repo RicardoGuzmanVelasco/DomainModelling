@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Invariants | Cards
+header Kalendra.Inscryption
+allowMixing
+'''''''''''''
+
+interface Card{
+cost: Cost [CanBeNull]
+stats: CombatStats
+sigils: Sigil[]
+tribes: Tribe[]
+}
+
+class Currency <<(S, orange) ValueObject>> {
+id: string
+}
+
+class CombatStats <<(S, orange) ValueObject>> {
+attack: int
+health: int
+}
+
+class Cost <<(S, orange) ValueObject>> {
+currency: Currency
+count: int
+}
+
+
+class CardModel <<Immutable>>{
+id: string
+}
+
+'''''''''''''
+
+Cost *-- Currency
+
+Card *-- CombatStats
+Card *-- "0..1" Cost
+
+note as NStats
+{attack >= 0}
+{health > 0}
+end note
+NStats . CombatStats
+
+note as NCost
+{currency not null}
+{count > 0}
+end note
+NCost . Cost
+
+CardModel ..|> Card
+
+'''''''''''''
+footer © RGV, 2021
+@enduml

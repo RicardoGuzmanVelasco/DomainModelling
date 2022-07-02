@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Invariants | Cards
+header Kalendra.Inscryption
+allowMixing
+'''''''''''''
+
+interface Card{
+cost: Cost [CanBeNull]
+stats: CombatStats
+sigils: Sigil[]
+tribes: Tribe[]
+}
+
+interface AlteredCard{
+sigilGifts: SigilGift[]
+}
+
+class SigilGift <<(S, orange) ValueObject>> {
+sigil: Sigil
+way: SigilGivenWay
+}
+
+class SigilGivenWay  <<(S, orange) ValueObject>> {
+id: string
+}
+
+class Sigil <<(S, orange) ValueObject>> {
+id: string
+}
+
+class CardModel <<Immutable>>{
+id: string
+}
+class CardInDeck{
+model: CardModel
+}
+class CardPlaying{
+originalCard: CardInDeck
+}
+
+'''''''''''''
+ 
+AlteredCard --> "{∀sigilGift, not null}" SigilGift
+SigilGift ..> "{not null}" SigilGivenWay
+
+CardModel ..|> Card
+
+CardInDeck ..|> AlteredCard
+CardInDeck *-- CardModel
+
+CardPlaying ..|> AlteredCard
+CardPlaying *-- CardInDeck
+
+Card *-- "{∀sigilGift, not null}" Sigil
+SigilGift *-- "{not null}" Sigil
+
+note as NoteAlteredCard
+{|sigilGifts| = |sigils|}
+{∀sigil, sigilGifts.sigil.id = sigils.id}
+end note
+NoteAlteredCard .u. AlteredCard : >
+NoteAlteredCard .l. Card
+NoteAlteredCard .. Sigil
+
+'''''''''''''
+footer © RGV, 2021
+@enduml
