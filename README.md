@@ -1,6 +1,8 @@
 # DomainModelling
 
 A bunch of domain model exercises from any random stuff. Just to practice and improve.
+Navigate through folders to see the models.
+These are some examples:
 
 ## DDD (Domain-Driven Design)
 

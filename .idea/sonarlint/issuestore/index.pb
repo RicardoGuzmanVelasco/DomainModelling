@@ -29,5 +29,3 @@ F
 TODO.txt,b\8\b871594f146532f9abccbebffa1170a083349518
 l
 <Mobile Games/Animal Restaurant/Tutorial KeyAbstractions.puml,7\5\750e74b7322b393fd7ac25d34a4b79a40ecac2cc
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
