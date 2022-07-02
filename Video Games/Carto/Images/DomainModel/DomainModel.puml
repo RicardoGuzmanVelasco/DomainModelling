@@ -1,0 +1,216 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+''''''POVs
+
+'Title "Main"
+    'w/ everything
+
+'Title "Entities"
+    'w/o Actions.
+    'w/o spawn tile.
+    'w/o board
+    'w/ coords. 
+    'w/o Missions. 
+
+'Title "Player Perspective"
+    'Actions.
+    'w/o spawn tile.
+    'w/o board & coords. 
+    'w/o Missions. 
+    
+Title "PutTile Action"
+    'w/o Other TileActions.
+    'w/ Put TileAction.
+    'w/ ReverseSide.
+    'w/o spawn tile.
+    'w board & coords. 
+    'w/o Missions.
+    'w/o MissionPrize.
+    'w/o VictoryMission.
+    'w/o MissionRequirements details 
+
+'Title "Mission Requirements"
+    'w/o Actions.
+    'w/o spawn tile.
+    'w/ board & coords. 
+    'w/ Missions.
+    'w/o MissionPrize.
+    'w/o VictoryMission.
+    'w/ MissionRequirements details 
+
+
+''''''POVs (END)
+
+
+
+'''''ACTIONS
+Action --> Tile
+Action -> Map
+
+
+''' PutTile Action
+PutTile --|> Action
+''' PutTile Action (end)
+
+''' Other TileActions
+'MoveTile --|> Action
+'RotateTile --|> Action
+'    RotateTile ..> "Affects sides \n orientation on Tile" Side
+'    RotateTile --> Direction
+'
+'abstract class Direction << (S, orange) >> #strategy
+'class Clockwise << (S, orange) >> #strategy
+'    Clockwise --|> Direction 
+'class CounterClockwise << (S, orange) >> #strategy
+'    CounterClockwise --|> Direction
+'
+'
+'class MoveTile #application
+'class RotateTile #application
+''' Other TileActions (end)
+abstract class Action #application
+class PutTile #application
+
+'''w/ spawn
+'class SpawnTile #application
+'{
+'    +target : Coords
+'}
+'SpawnTile --|> Action
+''''
+'
+'Player --> MoveTile
+'Player --> PutTile
+'Player --> RotateTile
+'''''ACTIONS (END)
+
+class Player #technology
+Player ..> Map
+
+''''''BOARD
+'''w/ board & coords
+Map *-- Board
+Board *-- "0..*" Coords
+Coords o-- "0..1" Tile
+
+class Coords << (S, orange) >> 
+{
+    +(X,Y)
+}
+'''
+'''w/o board & coords
+'Map *-- "0..*" Tile
+'''
+''''''BOARD (END)
+
+class Tile
+{
+    +Northern : Side
+    +Western : Side
+    +Southern : Side
+    +Eastern : Side
+}
+Tile *-- "4" Side
+Side o-- "1..*" SideTag
+
+'''''' REVERSE SIDE
+enum AdjacencyDirection
+{
+    Up,
+    Right,
+    Down,
+    Left
+}
+Tile .> AdjacencyDirection
+AdjacencyDirection .u.> Coords
+
+ReverseSide -|> Side
+ReverseSide .u.> AdjacencyDirection
+
+note bottom of ReverseSide
+Up <-> Down
+Left <-> Right
+endnote
+
+class SideMatch
+PutTile ..> SideMatch
+SideMatch ..> ReverseSide
+SideMatch ..> Side
+
+'''''' REVERSE SIDE (END)
+
+'''''''MISSIONS
+Map *-- "0..*" Mission
+class Mission #implementation
+
+''' w/ victory mission & prize
+'    VictoryMission --|> Mission
+'    class VictoryMission #implementation
+'    class MissionPrize #implementation
+'Map *-- "1" VictoryMission
+'
+'Mission --> MissionPrize
+'MissionPrize ..> SpawnTile
+'
+'class MapEnded #application
+'MapEnded --|> MissionPrize
+'VictoryMission ..> MapEnded
+'''
+
+Mission *-- "1..*" MissionRequirement
+abstract class MissionRequirement #strategy
+
+class TileInCoords #strategy
+{
+    +RequiredTile : Tile
+    +RequiredCoords : Coords
+}
+TileInCoords --|> MissionRequirement 
+
+class SideTagInAdjacent #strategy
+{
+    +RequiredTags : SideTag[]
+    +RelativeAdjacentCoords : Coords
+}
+SideTagInAdjacent --|> MissionRequirement
+
+''' MissionRequirements details
+'MissionRequirement --> Coords
+'
+'TileInCoords --> Tile
+'
+'SideTagInAdjacent --> "1..*" SideTag
+'SideTagInAdjacent --> NeighbourTile
+'
+'class RequirementMatches #application
+'{
+'    Whether or not a \n MissionRequirement \n is satisfied.
+'}
+'RequirementMatches -u-> MissionRequirement
+'RequirementMatches ..> Board
+'''
+
+''''''MISSIONS (END)
+
+''''''ADJACENTS
+'
+'class RelativeTile
+'{
+'    +RelativeTo : Tile
+'    +Adjacency : Coords
+'}
+'RelativeTile -u-|> Tile
+'
+'class NeighbourTile
+'{
+'    +RelativeTo : Tile
+'    +Adjacency : Coords
+'}
+'NeighbourTile -u-|> RelativeTile
+'
+'Tile -> "0..*" RelativeTile
+'Tile -> "0..4" NeighbourTile
+''''''ADJACENTS (END)
+
+@enduml

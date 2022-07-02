@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Title "Domain"
+
+class Player #technology
+Player .> Map
+
+Map *-- Board
+Board *--> "0..*" Tile
+
+class Coords << (S, orange) ValueObject>> 
+{
+    +{field}(X,Y)
+    
+    +Zero {static}
+    +Up, Right, Down, Left {static}
+    
+    +{method} operators ==, -, +, *int...
+}
+(Board, Tile) .> Coords
+
+interface IOrientable
+{
+    +[Coords]: Side
+}
+IOrientable .l> Coords
+IOrientable ..> Side
+
+class TileSides
+TileSides .u.|> IOrientable
+
+class Tile
+Tile ..|> IOrientable
+Tile *-- TileSides
+TileSides *-- "4" Side
+Side o-- "1..*" SideTag
+
+@enduml
