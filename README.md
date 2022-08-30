@@ -16,31 +16,31 @@ _Click titles to expand diagrams_.
 
 <details><summary>Model-Driven Design</summary>
 
-![](DDD/ModelDrivenDesign.png)
+![](Software/DDD/ModelDrivenDesign.png)
 
 </details>
 
 <details><summary>Supple design patterns</summary>
 
-![](DDD/SuppleDesignPatterns.png)
+![](Software/DDD/SuppleDesignPatterns.png)
 
 </details>
 
 <details><summary>Model integrity patterns</summary>
 
-![](DDD/ModelIntegrityPatterns.png)
+![](Software/DDD/ModelIntegrityPatterns.png)
 
 </details>
 
 <details><summary>Strategic distillation</summary>
 
-![](DDD/StrategicDistillation.png)
+![](Software/DDD/StrategicDistillation.png)
 
 </details>
 
 <details><summary>Large-scale structure patterns</summary>
 
-![](DDD/LargescaleStructurePatterns.png)
+![](Software/DDD/LargescaleStructurePatterns.png)
 
 </details>
 

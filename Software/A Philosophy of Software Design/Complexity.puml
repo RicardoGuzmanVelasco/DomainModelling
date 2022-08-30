@@ -1,0 +1,37 @@
+﻿@startuml
+skin rose
+header A Philosophy of Software Design
+title Complexity
+
+
+rectangle Complexity #khaki
+rectangle Cause
+rectangle Symptom
+
+Complexity -r-> Cause #grey : because of
+Complexity -l-> Symptom #grey : manifests as
+
+rectangle "Change amplification" as Change
+rectangle "Cognitive load" as Cognitive
+rectangle "Unknown unknown" as Unknown
+Change -u-|> Symptom  : shotgun\nsurgery
+Cognitive -u-|> Symptom : error\nprone
+Unknown -u-|> Symptom : delayed\nfeedback
+
+rectangle Dependency
+rectangle Obscurity
+Dependency -u--|> Cause
+Obscurity -u-|> Cause
+
+rectangle Explicit
+rectangle Implicit
+Explicit -u-|> Dependency #green : by\nsoftware\ndesign
+Implicit -l-|> Dependency #green : eg:\nshotgun\nsurgery,\nprotocols...
+
+Dependency --> Change #blue : leads to
+Dependency --> Cognitive #blue : makes high
+Obscurity --> Unknown #blue : creates
+Obscurity --> Cognitive #blue : contributes to
+
+right footer (CC-BY) RGV, 2022
+@enduml
