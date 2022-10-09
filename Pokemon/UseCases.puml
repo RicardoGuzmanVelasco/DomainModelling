@@ -1,4 +1,4 @@
-﻿@startuml
+@startuml
 @startuml
 skin rose
 skinparam actorstyle awesome
@@ -73,6 +73,13 @@ package Menu{
     (Exit)
 }
 
+package Shopping{
+    (Buy item)
+    (Sell item)
+}
+
+Player -u-> (Buy item)
+
 package Pokedex{
     (See Pokedex)
     (See Pokedex entry)
@@ -81,15 +88,21 @@ package Pokedex{
 Player -u-> Pokedex
 
 package PC{
-package MyPC{
-    (Withdraw item)
-    (Deposit item)
-    (Toss item)
-    PC ..> (Interact with something) : <<extends>>
-}
-package BillPC{
-
-}
+    package MyPC{
+        (Withdraw item)
+        (Deposit item)
+        (Toss item)
+        PC ..> (Interact with something) : <<extends>>
+    }
+    package BillPC{
+        (Release a Pkmn)
+        
+        (Replace Pkmn)
+        (Move party Pkmn to storage)
+        (Move storage Pkmn to party)
+        (Replace Pkmn) ..> (Move party Pkmn to storage) : <<includes>>
+        (Replace Pkmn) ..> (Move storage Pkmn to party) : <<includes>>
+    }
 }
 
 Player -u-> PC
@@ -104,7 +117,7 @@ package Tutorial{
 
 Player -u-> (Choose starter)
 
-package Gotcha{
+package Pkmns{
     (Nickname a Pkmn)
     (Catch a Pkmn)
     
@@ -123,9 +136,16 @@ package Battle{
 
 Player -u-> Battle
 
-(Heal team)
-(Heal team) ..> (Talk to someone) : <<extends>>
+package Healing{
+    (Heal Pkmn)
+    (Heal Pkmn) ..> (Use item) : <<extends>>
+    (Heal party)
+    (Heal party) ..> (Talk to someone) : <<extends>>
+}
 
-Player -u-> (Heal team)
+Player -u-> (Heal party)
+
+''''' arrangement tweaks
+Shopping .. Overworld #transparent
 
 @enduml
