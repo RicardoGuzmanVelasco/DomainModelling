@@ -43,6 +43,7 @@ package Options{
 
 FirstTimeUser --> Options #green
 User --> Options #blue
+Player -> Options
 
 package Overworld{
     (Walk)
