@@ -1,0 +1,131 @@
+﻿@startuml
+@startuml
+skin rose
+skinparam actorstyle awesome
+left to right direction
+
+title Use cases
+header Pkmn | Blue/Red/Green
+right footer (CC BY-SA 2.0) RGV
+skinparam linetype ortho
+
+actor FirstTimeUser #technology
+actor User #application
+actor Player
+
+note left of User : An user still has\nnot loaded a game,\nunlike a player.
+
+package "Start menu" as Start{
+    (Run the app)
+    (Skip intro cutscene)
+    (Load game)
+    (Create new game)
+    
+    (Create new game) ..> New : <<includes>>
+}
+
+FirstTimeUser --> (Run the app) #green
+FirstTimeUser --> (Skip intro cutscene) #green
+FirstTimeUser --> (Create new game) #green
+
+User --> Start #blue
+
+package "New game" as New{
+    (Name character)
+    (Name rival)
+}
+
+package Options{
+    (Set text speed)
+    (Toggle battle animation)
+    (Set battle style)
+}
+
+FirstTimeUser --> Options #green
+User --> Options #blue
+
+package Overworld{
+    (Walk)
+    'what about stairs, teleports...?
+    (Run)
+    (Talk to someone)
+    (Interact with something)
+}
+
+Player -u-> Overworld
+Player -u-> Menu
+
+package Dialogs{
+    (Speed up text)
+    (Skip to text)
+}
+
+Player -u-> Dialogs
+User --> Dialogs #blue
+FirstTimeUser --> Dialogs #green
+
+package Menu{
+    (See bag)
+    (See Pkmn team)
+    (See map)
+    (See my trainer info)
+    (Save)
+    (Exit)
+}
+
+package Pokedex{
+    (See Pokedex)
+    (See Pokedex entry)
+}
+
+Player -u-> Pokedex
+
+package PC{
+package MyPC{
+    (Withdraw item)
+    (Deposit item)
+    (Toss item)
+    PC ..> (Interact with something) : <<extends>>
+}
+package BillPC{
+
+}
+}
+
+Player -u-> PC
+
+package Tutorial{
+    (See starter)
+    (Choose starter)
+    
+    (See starter) ..> (See Pokedex entry) : <<includes>>
+    (Choose starter) .> (See starter) : <<includes>>
+}
+
+Player -u-> (Choose starter)
+
+package Gotcha{
+    (Nickname a Pkmn)
+    (Catch a Pkmn)
+    
+    (Nickname a Pkmn) ..> (Catch a Pkmn) : <<extends>>
+    (See Pokedex entry) ..> (Catch a Pkmn) : <<extends>>
+}
+
+Player -u-> (Catch a Pkmn)
+
+package Battle{
+    (Attack)
+    (Use item)
+    (Switch Pkmn)
+    (Run)
+}
+
+Player -u-> Battle
+
+(Heal team)
+(Heal team) ..> (Talk to someone) : <<extends>>
+
+Player -u-> (Heal team)
+
+@enduml
