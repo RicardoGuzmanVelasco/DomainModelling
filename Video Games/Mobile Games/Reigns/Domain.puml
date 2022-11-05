@@ -1,0 +1,59 @@
+﻿@startuml
+skin rose
+
+rectangle Character
+rectangle PlayableCharacter
+rectangle NPC
+
+rectangle Dilemma
+rectangle Choice
+rectangle Consecuence
+rectangle Balance
+rectangle NeutralBalance
+rectangle Kingdom
+
+rectangle Power <<{int}>>
+rectangle Church
+rectangle People
+rectangle Army
+rectangle Treasury
+
+rectangle King
+
+rectangle Storyline
+
+PlayableCharacter -u-|> Character
+NPC -u-|> Character
+King -u-|> PlayableCharacter
+
+NPC ..> Dilemma : proposes
+
+Dilemma *-- "2" Choice
+
+Choice ..> Consecuence : implies
+Storyline *-u- "*" Dilemma
+
+Consecuence ..> Kingdom : affects
+Consecuence --> Balance
+
+Kingdom --> Balance : {∀ power p, p >= 0}
+
+Balance *-- "4, one per each" Power
+
+Church -u-|> Power
+People -u-|> Power
+Army -u-|> Power
+Treasury -u-|> Power
+
+King --> Choice : makes
+King --> Dilemma : receive
+
+NeutralBalance -|> Balance : {∀ power p, p = 0}
+
+Choice ..> Storyline : may unlock
+
+'¿cada dilema es un año?
+'¿storyline se desbloquea por años?
+'cuándo se triggerea una storyline (5 conversaciones no sé qué)
+
+@enduml

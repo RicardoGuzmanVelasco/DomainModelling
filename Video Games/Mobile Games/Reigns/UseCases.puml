@@ -1,0 +1,43 @@
+﻿@startuml
+skin rose
+left to right direction
+
+:Player:
+
+package Gameplay{
+    (Take a choice)
+    (Embrace death)
+    (Preview consecuences)
+    (See powers balance)
+    (Exit from game)
+    
+    (Preview consecuences) ..> (See powers balance) : <<includes>>
+    
+    (Embrace death) ..> (Take a choice) : <<extends>>
+    (Take a choice) .> (See powers balance) : <<includes>>
+}
+
+package Meta{
+    (See objectives)
+    (See line of succession)
+    (Start a game)
+    (Continue a game)
+    
+    (Start a game) ..> (Continue a game) : <<includes>>
+}
+
+package Settings{
+    (Change language)
+    (Tweak audio levels)
+    (See progress historial)
+}
+
+Player --> Gameplay
+Player --> Meta
+Player --> Settings
+
+
+''''''
+Meta .l. Settings #transparent
+Gameplay .l. Meta #transparent
+@enduml
